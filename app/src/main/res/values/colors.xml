@@ -2,4 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="quickqctionbackground">#2f2d2e</color>
+    <color name="folder">#333333</color>
+    <color name="coloraccent">#134686</color>
 </resources>
