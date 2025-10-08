@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">DBDiary_TugasAkhir</string>
+    <string name="judul">Judul</string>
+    <string name="tolong_ketikan_disini_ya">Isi Diary</string>
 </resources>

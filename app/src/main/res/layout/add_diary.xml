@@ -6,5 +6,88 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
+    
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingBottom="50dp"
+        >
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="20dp"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="4dp"
+                >
+
+                <ImageView
+                    android:id="@+id/IVBack"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/back_svgrepo_com"
+                    android:layout_marginBottom="6dp"
+
+                    />
+
+                <ImageView
+                    android:id="@+id/IVSave"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="end"
+                    android:layout_marginBottom="6dp"
+                    android:layout_marginLeft="265dp"
+                    android:src="@drawable/save_save_file_svgrepo_com"
+                    />
+            </LinearLayout>
+
+
+            <EditText
+                android:id="@+id/ETjudul"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:background="@null"
+                android:fontFamily="@font/poppins"
+                android:hint="@string/judul"
+                android:imeOptions="actionDone"
+                android:minHeight="48dp"
+                android:textSize="25dp"
+                android:textColorHint="@color/black"
+                />
+
+            <TextView
+                android:id="@+id/TVTanggal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="15dp"
+                android:fontFamily="@font/poppins"
+                tools:ignore="TextSizeCheck"
+                />
+
+            <EditText
+                android:id="@+id/ETisi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@null"
+                android:hint="@string/tolong_ketikan_disini_ya"
+                android:imeOptions="actionDone"
+                android:minHeight="48dp"
+                android:textColorHint="@color/black"
+                />
+        </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
