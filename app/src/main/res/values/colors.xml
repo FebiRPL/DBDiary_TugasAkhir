@@ -5,4 +5,5 @@
     <color name="quickqctionbackground">#2f2d2e</color>
     <color name="folder">#333333</color>
     <color name="coloraccent">#134686</color>
+    <color name="DefaultBackground">#333333</color>
 </resources>
