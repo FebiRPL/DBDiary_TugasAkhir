@@ -5,10 +5,10 @@
     android:id="@+id/main"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="70dp"
+    android:layout_height="75dp"
     android:layout_marginTop="5dp"
     android:background="@drawable/bg_diary"
-    tools:context=".Diary">
+    >
 
     <TextView
         android:id="@+id/Tvjudul"
@@ -16,6 +16,7 @@
         android:layout_height="wrap_content"
         android:includeFontPadding="false"
         android:textSize="25dp"
+        android:textColor="@color/white"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
@@ -28,6 +29,7 @@
         android:layout_marginStart="9dp"
         android:layout_marginTop="7dp"
         android:layout_marginEnd="15dp"
+        android:textColor="@color/white"
         android:layout_marginBottom="10dp"
         android:includeFontPadding="false"
         android:textSize="10dp"

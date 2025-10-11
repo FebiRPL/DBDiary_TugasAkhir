@@ -13,10 +13,7 @@
         android:theme="@style/Theme.DBDiary_TugasAkhir"
         tools:targetApi="31">
         <activity
-            android:name=".Cari"
-            android:exported="false" />
-        <activity
-            android:name=".Diary"
+            android:name=".AddDiary"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
