@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 
 class DiaryAdapter(private var list: MutableList<Diary>, val context: Context) :
@@ -28,6 +29,7 @@ class DiaryAdapter(private var list: MutableList<Diary>, val context: Context) :
         holder.tvJudul.text = item.title
         holder.tvTanggal.text = item.date
 
+        // Klik biasa untuk detail
         holder.itemView.setOnClickListener {
             val intent = Intent(context, AddDiary::class.java)
             intent.putExtra("id", item.id)
@@ -35,6 +37,22 @@ class DiaryAdapter(private var list: MutableList<Diary>, val context: Context) :
             intent.putExtra("Content", item.content)
             intent.putExtra("Date", item.date)
             context.startActivity(intent)
+        }
+
+        // Tekan lama untuk hapus
+        holder.itemView.setOnLongClickListener {
+            AlertDialog.Builder(context)
+                .setTitle("Hapus Catatan")
+                .setMessage("Yakin mau hapus catatan \"${item.title}\"?")
+                .setPositiveButton("Ya") { _, _ ->
+                    val db = DatabaseHelper(context)
+                    db.deleteDiary(item.id)
+                    list.removeAt(position)
+                    notifyItemRemoved(position)
+                }
+                .setNegativeButton("Batal", null)
+                .show()
+            true
         }
     }
 
