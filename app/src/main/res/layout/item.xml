@@ -1,38 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
-    android:orientation="vertical"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="75dp"
-    android:layout_marginTop="5dp"
-    android:background="@drawable/bg_diary"
-    >
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="6dp"
+    android:layout_marginHorizontal="8dp"
+    card_view:cardCornerRadius="12dp"
+    card_view:cardElevation="6dp"
+    android:foreground="?android:attr/selectableItemBackground">
 
-    <TextView
-        android:id="@+id/Tvjudul"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:includeFontPadding="false"
-        android:textSize="25dp"
-        android:textColor="@color/white"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        />
+        android:orientation="vertical"
+        android:padding="12dp"
+        android:background="@drawable/bg_diary">  <!-- Bisa tetap pake bg_diary -->
 
-    <TextView
-        android:id="@+id/Waktu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="9dp"
-        android:layout_marginTop="7dp"
-        android:layout_marginEnd="15dp"
-        android:textColor="@color/white"
-        android:layout_marginBottom="10dp"
-        android:includeFontPadding="false"
-        android:textSize="10dp"
-        />
+        <TextView
+            android:id="@+id/Tvjudul"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:layout_marginBottom="5dp"
+            android:includeFontPadding="false"/>
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/Waktu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:includeFontPadding="false"/>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

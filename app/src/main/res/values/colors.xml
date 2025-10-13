@@ -7,4 +7,5 @@
     <color name="coloraccent">#134686</color>
     <color name="DefaultBackground">#333333</color>
     <color name="Purple">#A376A2</color>
+    <color name="colorPrimaryDark">#292929</color>
 </resources>
