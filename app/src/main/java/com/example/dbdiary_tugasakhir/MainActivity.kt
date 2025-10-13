@@ -31,13 +31,13 @@ class MainActivity : AppCompatActivity() {
         val Delete = findViewById<ImageView>(R.id.IVDelete)
 
         // Tombol delete disembunyikan dulu
-        Delete.visibility = View.GONE  // 👇 tambahan
+        Delete.visibility = View.GONE
 
         // Set up RecyclerView
         list = ArrayList()
         adapter = DiaryAdapter(list, this) { isSelecting ->
             // Kalau user lagi tahan item (mode pilih aktif), tampilkan tombol delete
-            Delete.visibility = if (isSelecting) View.VISIBLE else View.GONE  // 👇 tambahan
+            Delete.visibility = if (isSelecting) View.VISIBLE else View.GONE
         }
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity() {
                     .setPositiveButton("Ya") { _, _ ->
                         adapter.removeSelectedItems(db)
                         Toast.makeText(this, "Diary berhasil dihapus", Toast.LENGTH_SHORT).show()
-                        Delete.visibility = View.GONE  // 👇 tambahan
+                        Delete.visibility = View.GONE
                     }
                     .setNegativeButton("Tidak", null)
                     .show()
