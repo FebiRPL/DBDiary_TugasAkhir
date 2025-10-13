@@ -7,11 +7,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 
-class DiaryAdapter(private var list: MutableList<Diary>, val context: Context) :
-    RecyclerView.Adapter<DiaryAdapter.ViewHolder>() {
+class DiaryAdapter(
+    private var list: MutableList<Diary>,
+    private val context: Context,
+    private val onSelectionModeChange: (Boolean) -> Unit
+) : RecyclerView.Adapter<DiaryAdapter.ViewHolder>() {
+
+    // Simpan daftar posisi item yang dipilih
+    val selectedItems = mutableSetOf<Int>()
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val tvJudul: TextView = view.findViewById(R.id.Tvjudul)
@@ -29,34 +35,65 @@ class DiaryAdapter(private var list: MutableList<Diary>, val context: Context) :
         holder.tvJudul.text = item.title
         holder.tvTanggal.text = item.date
 
-        // Klik biasa untuk detail
+        // Warna background jika item dipilih
+        holder.itemView.setBackgroundColor(
+            if (selectedItems.contains(position))
+                ContextCompat.getColor(context, R.color.Purple)
+            else
+                ContextCompat.getColor(context, android.R.color.transparent)
+        )
+
+        // Klik untuk pilih / batal pilih
         holder.itemView.setOnClickListener {
-            val intent = Intent(context, AddDiary::class.java)
-            intent.putExtra("id", item.id)
-            intent.putExtra("Title", item.title)
-            intent.putExtra("Content", item.content)
-            intent.putExtra("Date", item.date)
-            context.startActivity(intent)
+            if (selectedItems.isNotEmpty()) {
+                toggleSelection(position)
+            } else {
+                // Kalau belum mode seleksi, buka halaman edit
+                val intent = Intent(context, AddDiary::class.java)
+                intent.putExtra("id", item.id)
+                intent.putExtra("Title", item.title)
+                intent.putExtra("Content", item.content)
+                intent.putExtra("Date", item.date)
+                context.startActivity(intent)
+            }
         }
 
-        // Tekan lama untuk hapus
+        // Tekan lama buat masuk mode seleksi
         holder.itemView.setOnLongClickListener {
-            AlertDialog.Builder(context)
-                .setTitle("Hapus Catatan")
-                .setMessage("Yakin mau hapus catatan \"${item.title}\"?")
-                .setPositiveButton("Ya") { _, _ ->
-                    val db = DatabaseHelper(context)
-                    db.deleteDiary(item.id)
-                    list.removeAt(position)
-                    notifyItemRemoved(position)
-                }
-                .setNegativeButton("Batal", null)
-                .show()
+            toggleSelection(position)
             true
         }
     }
 
     override fun getItemCount(): Int = list.size
+
+    // Fungsi toggle pilihan
+    private fun toggleSelection(position: Int) {
+        if (selectedItems.contains(position)) {
+            selectedItems.remove(position)
+        } else {
+            selectedItems.add(position)
+        }
+        notifyItemChanged(position)
+        onSelectionModeChange(selectedItems.isNotEmpty())
+    }
+
+    // Ambil daftar Diary yang dipilih
+    fun getSelectedItems(): List<Diary> {
+        return selectedItems.map { list[it] }
+    }
+
+    // Hapus item terpilih dari database dan list
+    fun removeSelectedItems(db: DatabaseHelper) {
+        val toDelete = getSelectedItems()
+        toDelete.forEach {
+            db.deleteDiary(it.id)
+            list.remove(it)
+        }
+        selectedItems.clear()
+        notifyDataSetChanged()
+        onSelectionModeChange(false)
+    }
 
     fun updateData(newList: MutableList<Diary>) {
         list = newList
